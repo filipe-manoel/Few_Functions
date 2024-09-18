@@ -25,12 +25,20 @@ spats_fill <- function(df=df, col_var = "COL", row_var = "ROW", gen_value = "GEN
   r = nlevels(df$ROW)
   
   c1 = rep(seq(1:c),r)
+  c1 = sort(c1)        # Important!
   r1 = rep(seq(1:r),c)
   
   aux1 = data.frame(cbind(c1,r1))
   aux1$COL_ROW =  paste(aux1$c1, aux1$r1, sep = "_")
   
+  # Remove duplicates based on the "COL_ROW" column
+  df <-  df %>%
+    distinct(COL_ROW, .keep_all = TRUE)
   
+  aux1 <-  aux1 %>%
+    distinct(COL_ROW, .keep_all = TRUE)
+  
+  # Create aux2
   aux2 = anti_join(aux1, df, by= "COL_ROW")
   names(aux2) = c("COL", "ROW", "COL_ROW")
   
@@ -39,6 +47,7 @@ spats_fill <- function(df=df, col_var = "COL", row_var = "ROW", gen_value = "GEN
   aux2$COL_ROW = as.factor(aux2$COL_ROW)
   aux2$GEN = as.factor("GENx")
   
+  #Create combined df
   combined_df <- bind_rows(df, aux2)
   
   all_columns <- union(names(df), names(aux2))
@@ -49,9 +58,10 @@ spats_fill <- function(df=df, col_var = "COL", row_var = "ROW", gen_value = "GEN
   df2_aligned <- aux2 %>%
     dplyr::mutate(across(setdiff(all_columns, names(df)), ~ NA, .names = "{col}"))
   
-  combined_df <- rbind(df1_aligned, df2_aligned)
+  results  <- rbind(df1_aligned, df2_aligned)
   
-  print(combined_df)
+
+  print(results)
 }
 
 
