@@ -13,6 +13,8 @@
 
 spats_fill <- function(df=df, col_var = "COL", row_var = "ROW", gen_value = "GENx") {
  
+ library(tidyverse)
+ 
   df$COL_ROW =  paste(df$COL, df$ROW, sep = "_")
   
   df = df
