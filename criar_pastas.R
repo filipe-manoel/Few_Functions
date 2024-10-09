@@ -9,14 +9,14 @@ criar_pastas <- function(root_dir = "meu_projeto") {
     root_dir,
     paste0(root_dir, "/data"),        # Dados brutos ou pré-processados
     paste0(root_dir, "/data_raw"),    # Dados brutos que não devem ser alterados
-    paste0(root_dir, "/utilities"), # Funções e scripts que podem ser úteis
-    paste0(root_dir, "/codes"),       # Scripts de análise (reprodutíveis)
+    paste0(root_dir, "/utilities"),   # Funções e scripts que podem ser úteis
+    paste0(root_dir, "/codes"),       # Scripts de análise 
     paste0(root_dir, "/results"),     # Resultados (modelos, gráficos, tabelas)
     paste0(root_dir, "/outputs"),     # Relatórios finais, figuras, exportações
     paste0(root_dir, "/docs"),        # Manuscrito, documentação, relatórios (e.g., RMarkdown, LaTeX, Word)
     paste0(root_dir, "/renv"),        # Ambiente R (dependências de pacotes)
-    paste0(root_dir, "/tests"),        # Testes unitários (opcional)
-    paste0(root_dir, "/images")
+    paste0(root_dir, "/tests"),       # Testes ( testa os códigos aqui primeiro e depois os copia para a pasta codes)
+    paste0(root_dir, "/images")      # save.image (salvar como.RData)
     )
   
   
